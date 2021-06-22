@@ -1,7 +1,7 @@
 # [Replace this with your project title]
 
 ## About Me
-My name is Jakub Manda, I am a Computer & Electonic Systems student studying at University of Strathclyde
+My name is Jakub Manda, I am a Computer & Electonic Systems student studying at University of Strathclyde.
 
 ## The Premise
 
