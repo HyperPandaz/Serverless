@@ -4,4 +4,4 @@ function Hello() {
     )
 }
 
-export default Hello
+module.exports = Hello
