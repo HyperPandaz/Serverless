@@ -12,7 +12,7 @@ module.exports = async function (context, req) {
     var parts = multipart.Parse(body, boundary);
 
     var imageData = parts[0].data;
-    
+
     var result = await analyzeImage(imageData);
 
     let emotions = result[0].faceAttributes.emotion;
@@ -23,10 +23,12 @@ module.exports = async function (context, req) {
     //module.exports function
     //analyze the image
 
+    var gif = await findGifs(main_emotion);
+
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: main_emotion
+        body: gif
     };
     console.log(result)
     context.done();
@@ -36,7 +38,6 @@ module.exports = async function (context, req) {
 async function analyzeImage(img) {
     const subscriptionKey = process.env.SUBSCRIPTIONKEY;
     const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
-
 
     let params = new URLSearchParams({
         'returnFaceId': 'true',
@@ -56,4 +57,18 @@ async function analyzeImage(img) {
 
     let data = await resp.json();
     return data;
+}
+
+async function findGifs(emotion) {
+    const giphyKey = process.env.GIPHYKEY;
+
+    let params = new URLSearchParams({
+        'api_key': giphyKey,
+        's': emotion
+    })
+
+    let apiResult = await fetch("https://api.giphy.com/v1/gifs/translate?" + params.toString())
+
+    let jsonResult = await apiResult.json();
+    return jsonResult.data.url;
 }
