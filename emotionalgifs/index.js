@@ -34,11 +34,10 @@ module.exports = async function (context, req) {
 }
 
 async function analyzeImage(img) {
-    // const subscriptionKey = process.env.SUBSCRIPTIONKEY;
-    // const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
+    const subscriptionKey = process.env.SUBSCRIPTIONKEY;
+    const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
 
-    const subscriptionKey = '16c610b8f8dc4dbda9e7f442e6c58ead';
-    const uriBase = 'https://jakub-face-recognition.cognitiveservices.azure.com/face/v1.0/detect';
+
     let params = new URLSearchParams({
         'returnFaceId': 'true',
         'returnfaceAttributes': 'emotion'
