@@ -45,7 +45,7 @@ module.exports = async function (context, req) {
 
     let value = songs[id];
 
-    let string = "We guessed you're part of this generation: ${id}! Happy listening! ${value}"
+    let string = "We guessed you're part of this generation: " + id + "! Happy listening! " + value + ""
 
 
     context.res = {
