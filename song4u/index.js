@@ -29,16 +29,16 @@ module.exports = async function (context, req) {
 
     let age = result[0].faceAttributes.age;
 
-    if (age >= 5 && age <= 25) {
+    if (age >= 5 && age < 25) {
         id = "GenZ"
     }
-    else if (age >= 26 && age <= 41) {
+    else if (age >= 25 && age < 41) {
         id = "GenY"
     }
-    else if (age >= 42 && age <= 57) {
+    else if (age >= 41 && age < 57) {
         id = "GenX"
     }
-    else if (age >= 58 && age <= 76) {
+    else if (age >= 57 && age < 76) {
         id = "BabyBoomers"
     }
     else { id = "Unknown" }
