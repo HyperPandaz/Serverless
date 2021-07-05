@@ -1,12 +1,20 @@
 var multipart = require("parse-multipart")
-const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
+//const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
+const connectionString = "DefaultEndpointsProtocol=https;AccountName=jakubstorage;AccountKey=R8kNwfmj9GCmC7IHK8UG9MGEGUj7nOdbMWIguIkCr8mZyWBwQPZ2JnRkFdKbwAs9jGv8B/Ylwq30swhZfWviqA==;EndpointSuffix=core.windows.net";
 const { BlobServiceClient } = require("@azure/storage-blob");
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-
-    var boundary = multipart.getBoundary(req.headers['content-type']);
     var body = req.body;
+    if (body == null) {
+        context.res = {
+            // status: 200, /* Defaults to 200 */
+            body: "Sorry! No image attached."
+        };
+        return
+    }
+    var password = req.headers['codename'];
+    var boundary = multipart.getBoundary(req.headers['content-type']);
     var parsedBody = multipart.Parse(body, boundary);
 
     var filetype = parsedBody[0].type;
@@ -21,25 +29,22 @@ module.exports = async function (context, req) {
         ext = "";
     }
 
-    let message = await uploadFiles(parsedBody, ext);
+    let message = await uploadFiles(parsedBody, ext, password);
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: message
     };
 }
 
-async function uploadFiles(parsedBody, ext) {
+async function uploadFiles(parsedBody, ext, name) {
     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-    const containerName = "image";
+    const containerName = "images";
     const containerClient = blobServiceClient.getContainerClient(containerName);    // Get a reference to a container
 
-    const blobName = 'test.' + ext;    // Create the container
+    const blobName = name + '.' + ext;    // Create the container
     const blockBlobClient = containerClient.getBlockBlobClient(blobName); // Get a block blob client
 
     const uploadBlobResponse = await blockBlobClient.upload(parsedBody[0].data, parsedBody[0].data.length);
 
-    if (uploadBlobResponse == true) {
-        return "File Saved";
-    }
-    return
+    return "File Saved";
 }
