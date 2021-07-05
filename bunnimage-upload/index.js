@@ -1,6 +1,5 @@
 var multipart = require("parse-multipart")
-//const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
-const connectionString = "DefaultEndpointsProtocol=https;AccountName=jakubstorage;AccountKey=R8kNwfmj9GCmC7IHK8UG9MGEGUj7nOdbMWIguIkCr8mZyWBwQPZ2JnRkFdKbwAs9jGv8B/Ylwq30swhZfWviqA==;EndpointSuffix=core.windows.net";
+const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const { BlobServiceClient } = require("@azure/storage-blob");
 
 module.exports = async function (context, req) {
