@@ -2,7 +2,7 @@ const querystring = require('querystring');
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 
 const config = {
-    endpoint: process.env.ENDPOINT,
+    endpoint: process.env.COSMOSENDPOINT,
     key: process.env.COSMOSKEY,
     databaseId: "SecretStorer",
     containerId: "secrets",
