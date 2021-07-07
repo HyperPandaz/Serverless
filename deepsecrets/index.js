@@ -13,7 +13,7 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     const queryObject = querystring.parse(req.body);
-    message = queryObject.Body;
+    var message = queryObject.Body;
     let document = { "message": message }
     let items = await createDocument(document)
 
