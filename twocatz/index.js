@@ -27,8 +27,8 @@ module.exports = async function (context, req) {
 
     let catpic1 = await getCat(name1);
     let catpic2 = await getCat(name2);
-    let catpic1 = await getCat(name3);
-    let catpic2 = await getCat(name4);
+    let catpic3 = await getCat(name3);
+    let catpic4 = await getCat(name4);
 
 
     context.res = {
