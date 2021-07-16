@@ -14,9 +14,9 @@
 <body>
   <div>
     <h1>Bunnimage</h1>
-    <form onsubmit="getImage(event)" enctype="multipart/form-data">
+    <form id="myform" onsubmit="getImage(event)" enctype="multipart/form-data">
       <label>Code: </label>
-      <input type="file" accept="image/x-png,image/jpeg" name="image"></input>
+      <input id="image" type="file" accept="image/x-png,image/jpeg" name="image"></input>
       <input id="name" type="text" placeholder="Enter your file's name" >
       <input type="submit" />
     </form>
