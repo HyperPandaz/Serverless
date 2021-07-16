@@ -12,7 +12,7 @@ function getImage(event) {
         try {
             let url = "https://jakub-deployment.azurewebsites.net/api/bunnimage-upload?code=RWVI4br4W7PJHV0ushQLbeX19EtDZPhA7rNG/ruXmPXLXmBQDkp77g==";
             console.log("Image was uploaded, making post request to Azure")
-            const response = await fetch(url, {
+            const response = fetch(url, {
                 method: 'POST',
                 body: payload,
                 headers: { 'codename': fileName.value, }
