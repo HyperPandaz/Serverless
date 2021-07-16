@@ -12,10 +12,10 @@ function getImage(event) {
         alert("No name error.");
         return;
     }
-    if (file == null) {
-        alert("No file error");
-        return;
-    }
+    // if (file == null) {
+    //     alert("No file error");
+    //     return;
+    // }
 
     try {
         let url = "https://jakub-deployment.azurewebsites.net/api/bunnimage-upload?code=RWVI4br4W7PJHV0ushQLbeX19EtDZPhA7rNG/ruXmPXLXmBQDkp77g==";
