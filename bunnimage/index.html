@@ -18,7 +18,9 @@
       <label>Code: </label>
       <input id="image" type="file" accept="image/x-png,image/jpeg" name="image"></input>
       <input id="name" type="text" placeholder="Enter your file's name" >
-      <input type="submit" />
+      <input id="button1" type="submit" value="Submit Your Picture" />
+      <input id="downloadusername" type="text"/>
+      <input id="button2" type="button" value="Download" onclick="downloadImage(event)"/>
     </form>
     <br />
     <div id="output"></div>
