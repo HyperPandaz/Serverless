@@ -4,7 +4,7 @@ function getImage(event) {
     var payload = new FormData(bunniForm);
     console.log(payload);
     var fileInput = document.getElementById("image");
-    var fileName = document.getElementById("name");
+    var fileName = document.getElementById("username");
     const file = fileInput.files[0]; // fileInput is the file upload input element
     payload.append("file", file);
 
