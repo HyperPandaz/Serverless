@@ -3,10 +3,10 @@
 
 ## Week 1
 
-### [Task Name]:
+### Set-up:
 
 #### Description
-- [Replace with description]
+- Make a clear plan of what has to be done
 
 #### ETA:
 > How long do you think it will take to complete this?
@@ -14,9 +14,9 @@
 
 #### Objective:
 > Checklist of everything you need to do to complete this issue
-- [ ] [Replace with small task  1]
-- [ ] [Replace with small task  2]
-- [ ] [Replace with small task  3]
+- [ ] update project tech and timeline
+- [ ] create a flowchart
+- [ ] decide on a JSON data format
 
 ## Week 2
 
