@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "myBlob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "images",
+      "connection": "AZURE_STORAGE_CONNECTION_STRING"
+    }
+  ]
+}
