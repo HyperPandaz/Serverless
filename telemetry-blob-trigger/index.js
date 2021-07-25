@@ -35,9 +35,10 @@ module.exports = async function (context, myBlob) {
     //     }
     // };
 
-    await fetch("https://cataas.com/cat/says/", {
-            method: 'POST',
-            body: blobs[0].name
-        });
+    console.log(blobs[0].name);
+    // await fetch("ENDPOINT", {
+    //         method: 'POST',
+    //         body: blobs[0].name
+    //     });
     return
 };
