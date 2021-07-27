@@ -12,7 +12,7 @@ module.exports = async function (context, req) {
     // let file = await fetch(url, {
     //     method: 'GET'
     // })
-    var file = await getFile(name);
+    var data = await getFile(name);
     //JSON parser object to parse read file
     //  const jsonParser = new JSONParser();
     //  const reader = new FileReader(file) 
@@ -21,11 +21,10 @@ module.exports = async function (context, req) {
     //var data = await streamToString(file.readableStreamBody)
     //console.log("file");
     //console.log(file.owner);
-    //console.log(JSON.parse(file))
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: file
+        body: data
     };
 }
 
@@ -43,7 +42,7 @@ async function getFile(name) {
     //console.log(await streamToString(downloadBlockBlobResponse.readableStreamBody));
     var data = await streamToString(downloadBlockBlobResponse.readableStreamBody);
 
-    return data;
+    return JSON.parse(data);
 }
 
 async function streamToString(readableStream) {
