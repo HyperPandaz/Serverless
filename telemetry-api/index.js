@@ -6,13 +6,15 @@ const { default: fetch } = require("node-fetch");
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    var name = req.body.name;
+    //var name = req.body;
     //var url = "https://jakubstorage.blob.core.windows.net/images/" + name + "";
+    var data = req.rawBody;
+    context.log(data);
 
     // let file = await fetch(url, {
     //     method: 'GET'
     // })
-    var data = await getFile(name);
+    //var data = await getFile(name);
     //JSON parser object to parse read file
     //  const jsonParser = new JSONParser();
     //  const reader = new FileReader(file) 
@@ -21,16 +23,21 @@ module.exports = async function (context, req) {
     //var data = await streamToString(file.readableStreamBody)
     //console.log("file");
     //console.log(file.owner);
+    context.bindings.signalRMessages = [{
+        "target": "newMessage",
+        "arguments": [data]
+    }]
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: data
-    };
+    // context.res = {
+    //     // status: 200, /* Defaults to 200 */
+    //     body: data
+    // };
+    context.done();
 }
 
 async function getFile(name) {
     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-    const containerName = "images";
+    const containerName = "data";
     const containerClient = blobServiceClient.getContainerClient(containerName);    // Get a reference to a container
 
     const blobName = name;    // Create the container
@@ -42,7 +49,8 @@ async function getFile(name) {
     //console.log(await streamToString(downloadBlockBlobResponse.readableStreamBody));
     var data = await streamToString(downloadBlockBlobResponse.readableStreamBody);
 
-    return JSON.parse(data);
+    return data;
+    //return JSON.parse(data);
 }
 
 async function streamToString(readableStream) {

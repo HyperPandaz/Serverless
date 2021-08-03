@@ -5,7 +5,7 @@ const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const blobServiceClient = BlobServiceClient.fromConnectionString(
     connectionString
 );
-const containerName = process.env.CONTAINER_NAME || "images";
+const containerName = process.env.CONTAINER_NAME || "data";
 const containerClient = blobServiceClient.getContainerClient(containerName);
 
 module.exports = async function (context, myBlob) {
@@ -36,9 +36,9 @@ module.exports = async function (context, myBlob) {
     // };
 
     console.log(blobs[0].name);
-    // await fetch("ENDPOINT", {
-    //         method: 'POST',
-    //         body: blobs[0].name
-    //     });
+    fetch("http://localhost:7071/api/telemetry-api", {
+            method: 'POST',
+            body: blobs[0].name
+        });
     return
 };
