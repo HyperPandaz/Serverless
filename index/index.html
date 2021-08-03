@@ -1,0 +1,34 @@
+<html>
+
+<body>
+  <h1>Azure SignalR Serverless Sample</h1>
+  <div id="messages"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+  <div id='myMap' style='width: 50vw; height: 60vh;'></div>
+  <script type='text/javascript'>
+      function loadMapScenario() {
+          var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+            center: new Microsoft.Maps.Location(55.861359, -4.243425),
+            zoom: 19
+          });
+          
+      }
+  </script>
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AnugvokUcwVAEy4a4n98nx7lEiTv4qVS9wsj9zRU4Et4LX9hATXBwVIDF4LHF3y1&callback=loadMapScenario' async defer></script>
+  <script>
+    let messages = document.querySelector('#messages');
+    const apiBaseUrl = window.location.origin;
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl(apiBaseUrl + '/api')
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+      connection.on('newMessage', (message) => {
+        document.getElementById("messages").innerHTML = message;
+      });
+
+      connection.start()
+        .catch(console.error);
+  </script>
+</body>
+
+</html>

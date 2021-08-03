@@ -1,14 +1,15 @@
 {
+  "disabled": false,
   "bindings": [
     {
-      "authLevel": "function",
+      "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
-      "name": "req",
       "methods": [
-        "get",
         "post"
-      ]
+      ],
+      "name": "req",
+      "route": "negotiate"
     },
     {
       "type": "http",
@@ -16,11 +17,11 @@
       "name": "res"
     },
     {
-      "type": "signalR",
-      "name": "signalRMessages",
+      "type": "signalRConnectionInfo",
+      "name": "connectionInfo",
       "hubName": "serverless",
       "connectionStringSetting": "AzureSignalRConnectionString",
-      "direction": "out"
+      "direction": "in"
     }
   ]
 }
