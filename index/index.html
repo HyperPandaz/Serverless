@@ -1,34 +1,296 @@
 <html>
+<meta name="viewport" content="width=device-width height=device-height, initial-scale=1">
+<style type="text/css">
+  body {
+    margin: 0;
+    background-color: #2196F3;
+  }
+
+  .item1 {
+    grid-area: header;
+  }
+
+  .item2 {
+    grid-area: menu;
+  }
+
+  .item3 {
+    grid-area: main;
+  }
+
+  .item4 {
+    grid-area: map;
+  }
+
+  .item5 {
+    grid-area: footer;
+  }
+
+  .item6 {
+    grid-area: buttons;
+  }
+
+  /* .grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main map map map'
+      'buttons buttons buttons map map map'
+      'footer footer footer footer footer footer';
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: 5vh 58vh 3vh 31vh;
+    grid-gap: 6px;
+    background-color: #2196F3;
+    padding: 6px;
+  } */
+
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'footer footer footer map map map'
+      'footer footer footer menu menu menu';
+    grid-template-columns: 16vw 16vw 16vw 16vw 16vw auto;
+    grid-template-rows: 5vh 61vh 30vh;
+    grid-gap: 6px;
+    background-color: #2196F3;
+    padding: 6px;
+  }
+
+  .grid-container>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* padding: 20px 0; */
+    /* font-size: 30px; */
+  }
+
+  table {
+    display: block;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: auto;
+    /* max-width: 100%; */
+    max-height: 90vh;
+  }
+thead {
+  position: sticky;
+}
+
+  th {
+    background-color: aliceblue;
+  }
+
+  th {
+    padding: 8px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 4px;
+  }
+</style>
 
 <body>
-  <h1>Azure SignalR Serverless Sample</h1>
-  <div id="messages"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
-  <div id='myMap' style='width: 50vw; height: 60vh;'></div>
   <script type='text/javascript'>
-      function loadMapScenario() {
-          var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-            center: new Microsoft.Maps.Location(55.861359, -4.243425),
-            zoom: 19
-          });
-          
-      }
+
   </script>
-  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AnugvokUcwVAEy4a4n98nx7lEiTv4qVS9wsj9zRU4Et4LX9hATXBwVIDF4LHF3y1&callback=loadMapScenario' async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+
+  <script type='text/javascript'>
+    var map;
+    var pushpin;
+    function loadMapScenario() {
+      map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        center: new Microsoft.Maps.Location(55.861340, -4.243425),
+        zoom: 18,
+        showMapTypeSelector: false
+      });
+      pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), { color: 'rgb(0, 165, 255)' });
+      map.entities.push(pushpin);
+    }
+    function update(long, lat) {
+      map.setView({ center: new Microsoft.Maps.Location(long, lat) });
+      pushpin.setLocation(new Microsoft.Maps.Location(long, lat));
+    }
+  </script>
+  <script type='text/javascript'
+    src='https://www.bing.com/api/maps/mapcontrol?key=AnugvokUcwVAEy4a4n98nx7lEiTv4qVS9wsj9zRU4Et4LX9hATXBwVIDF4LHF3y1&callback=loadMapScenario'
+    async defer></script>
   <script>
     let messages = document.querySelector('#messages');
     const apiBaseUrl = window.location.origin;
     const connection = new signalR.HubConnectionBuilder()
-        .withUrl(apiBaseUrl + '/api')
-        .configureLogging(signalR.LogLevel.Information)
-        .build();
-      connection.on('newMessage', (message) => {
-        document.getElementById("messages").innerHTML = message;
-      });
+      .withUrl(apiBaseUrl + '/api')
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+    connection.on('newMessage', (message) => {
+      document.getElementById("messages").innerHTML = message.deviceId;
+      // const li = document.createElement("li");
+      // li.innerHTML = message.messageId;
+      // document.getElementById("messages").appendChild(li);
 
-      connection.start()
-        .catch(console.error);
+
+      const tr = document.createElement("tr");
+      const messageId = document.createElement("td");
+      const time = document.createElement("td");
+      const device = document.createElement("td");
+      const accx = document.createElement("td");
+      const accy = document.createElement("td");
+      const accz = document.createElement("td");
+      const gyrox = document.createElement("td");
+      const gyroy = document.createElement("td");
+      const gyroz = document.createElement("td");
+      const long = document.createElement("td");
+      const lat = document.createElement("td");
+      const throttle = document.createElement("td");
+      const battery = document.createElement("td");
+      const speed = document.createElement("td");
+      messageId.innerHTML = message.messageId;
+      time.innerHTML = message.EventEnqueuedUtcTime;
+      accx.innerHTML = message.accelerometer.X;
+      accy.innerHTML = message.accelerometer.Y;
+      accz.innerHTML = message.accelerometer.Z;
+      gyrox.innerHTML = message.gyroscope.X;
+      gyroy.innerHTML = message.gyroscope.Y;
+      gyroz.innerHTML = message.gyroscope.Z;
+      lat.innerHTML = message.location.lat;
+      long.innerHTML = message.location.long;
+      throttle.innerHTML = message.throttle;
+      battery.innerHTML = message.battery;
+      speed.innerHTML = message.speed;
+      document.getElementById("tbody").appendChild(tr);
+      document.getElementById("tbody").appendChild(messageId);
+      document.getElementById("tbody").appendChild(time);
+      document.getElementById("tbody").appendChild(accx);
+      document.getElementById("tbody").appendChild(accy);
+      document.getElementById("tbody").appendChild(accz);
+      document.getElementById("tbody").appendChild(gyrox);
+      document.getElementById("tbody").appendChild(gyroy);
+      document.getElementById("tbody").appendChild(gyroz);
+      document.getElementById("tbody").appendChild(long);
+      document.getElementById("tbody").appendChild(lat);
+      document.getElementById("tbody").appendChild(throttle);
+      document.getElementById("tbody").appendChild(battery);
+      document.getElementById("tbody").appendChild(speed);
+      update(message.location.lat, message.location.long);
+
+
+
+      // document.getElementById("messageId").innerHTML = message.messageId;
+      // document.getElementById("device").innerHTML = message.deviceId;
+      // document.getElementById("temperature").innerHTML = temp;
+      // document.getElementById("humidity").innerHTML = hum;
+      
+    });
+
+    connection.start()
+      .catch(console.error);
   </script>
+
+  <div class="grid-container">
+    <div class="item1">
+      <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div style="font-size: 4vh;">Sigma Link</div>
+        <div style="font-size: 4vh; padding-right: 100px;">DEMO VERSION</div>
+      </div>
+    </div>
+    <div class="item2">
+      Menu
+      <div id="messages"></div>
+    </div>
+    <div class="item4">
+      <div id='myMap'></div>
+    </div>
+    <div class="item5">
+
+      <div id="contain" style="overflow-y:auto;">
+        <table id="table">
+          <thead>
+            <tr>
+              <th colspan="1">No.</th>
+              <th colspan="1">Time</th>
+              <th colspan="3">Accelerometer</th>
+              <th colspan="3">Gyroscope</th>
+              <th colspan="2">Location</th>
+              <th colspan="1">Throttle</th>
+              <th colspan="1">Battery</th>
+              <th colspan="1">Speed</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>X</th>
+              <th>Y</th>
+              <th>Z</th>
+              <th>X</th>
+              <th>Y</th>
+              <th>Z</th>
+              <th>Lat</th>
+              <th>Long</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+
+          </thead>
+          <tbody id="tbody">
+
+            <tr>
+              <td id="messageId"></td>
+              <td id="device"></td>
+              <td id="temperature"></td>
+              <td id="humidity"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <script type='text/javascript'>
+// function pageScroll() {
+	// var objDiv = document.getElementById("contain");
+  // objDiv.scrollTop = objDiv.scrollTop + 1;  
+  // if ((objDiv.scrollTop + 100) == objDiv.scrollHeight) {
+  //   objDiv.scrollTop = 0;
+  // }
+//   my_time = setTimeout('pageScroll()', 25);
+// }
+
+    // let elem = document.getElementById("contain");
+    // let btn = document.querySelector('button.scroll-to-table-end');
+    // btn.addEventListener('click', () => {
+    //   elem.scrollTo(0, 50);
+    // })
+    // return;
+
+
+    var my_time;
+$(document).ready(function() {
+  pageScroll();
+  $("#contain").mouseover(function() {
+    clearTimeout(my_time);
+  }).mouseout(function() {
+    pageScroll();
+  });
+});
+
+function pageScroll() {  
+	var objDiv = document.getElementById("contain");
+  objDiv.scrollTop = objDiv.scrollTop + 3;  
+  $('p:nth-of-type(1)').html('scrollTop : '+ objDiv.scrollTop);
+  $('p:nth-of-type(2)').html('scrollHeight : ' + objDiv.scrollHeight);
+  if (objDiv.scrollTop == (objDiv.scrollHeight - 100)) {
+    objDiv.scrollTop = 0;
+  }
+  my_time = setTimeout('pageScroll()',0);
+}
+  </script>
+
+
 </body>
 
 </html>

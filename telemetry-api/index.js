@@ -8,8 +8,8 @@ module.exports = async function (context, req) {
 
     //var name = req.body;
     //var url = "https://jakubstorage.blob.core.windows.net/images/" + name + "";
-    var data = req.rawBody;
-    context.log(data);
+    var data = req.body[0];
+    context.log(req.body[0]);
 
     // let file = await fetch(url, {
     //     method: 'GET'
