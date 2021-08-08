@@ -55,15 +55,15 @@ Dwnload Node.js
 
 In this section, you create a device identity in the identity registry in your IoT hub. A device cannot connect to a hub unless it has an entry in the identity registry.
 
-    1. In your IoT hub navigation menu, open IoT Devices, then select New to add a device in your IoT hub.
+1. In your IoT hub navigation menu, open IoT Devices, then select New to add a device in your IoT hub.
     
 ![create-identity-portal-vs2019](blog-images/create-identity-portal-vs2019.png)
 
-    2. In Create a device, provide a name for your new device, such as myDeviceId, and select Save. This action creates a device identity for your IoT hub. Leave Auto-generate keys checked so that the primary and secondary keys will be generated automatically.
+2. In Create a device, provide a name for your new device, such as myDeviceId, and select Save. This action creates a device identity for your IoT hub. Leave Auto-generate keys checked so that the primary and secondary keys will be generated automatically.
 
 ![create-a-device-vs2019](blog-images/create-a-device-vs2019.png)
 
-    3. After the device is created, open the device from the list in the IoT devices pane. Copy the Primary Connection String. This connection string is used by device code to communicate with the hub.
+3. After the device is created, open the device from the list in the IoT devices pane. Copy the Primary Connection String. This connection string is used by device code to communicate with the hub.
 
 By default, the keys and connection strings are masked as they are sensitive information. If you click the eye icon, they are revealed as shown in the image below. It is not necessary to reveal them to copy them with the copy button
 
@@ -257,19 +257,19 @@ module.exports = async function (context, req) {
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script>
-  let messages = document.querySelector('#messages');
-  const apiBaseUrl = window.location.origin;
-  const connection = new signalR.HubConnectionBuilder()
-    .withUrl(apiBaseUrl + '/api')
-    .configureLogging(signalR.LogLevel.Information)
-    .build();
-  connection.on('newMessage', (message) => {
-    // code to diplay data goes here
-  });
+    let messages = document.querySelector('#messages');
+    const apiBaseUrl = window.location.origin;
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl(apiBaseUrl + '/api')
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+    connection.on('newMessage', (message) => {
+      // code to diplay data goes here
+    });
 
-  connection.start()
-    .catch(console.error);
-</script>
+    connection.start()
+      .catch(console.error);
+  </script>
 ```
 
 5. In the html file place in a script that will create a map:
