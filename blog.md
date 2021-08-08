@@ -13,20 +13,20 @@ I have decided to solve this problem by designing solution that will allow us to
 
 ## Tools used
 
-Azure IoT Hub
-Azure Stream Analytics
-Azure Functions
-Azure SignalR Service
-Azure Blob Storage
-Bing Maps Dev Center
+Azure IoT Hub  
+Azure Stream Analytics  
+Azure Functions  
+Azure SignalR Service  
+Azure Blob Storage  
+Bing Maps Dev Center  
 
 ![Sigma Link Framework](blog-images/Sigma-Link-Framework.png)
 
 ## Step by step (with code snippets)
 ### Set Up
-Create Azure account
-Download VS Code https://code.visualstudio.com/download
-Dwnload Node.js
+Create Azure account  
+Download VS Code https://code.visualstudio.com/download  
+Dwnload Node.js  
 
 ### Create an IoT Hub
 1. Sign in to the Azure portal.
@@ -37,17 +37,17 @@ Dwnload Node.js
 
 4. On the Basics tab, complete the fields as follows:
 
-    - *Subscription:* Select the subscription to use for your hub.
+    - **Subscription:** Select the subscription to use for your hub.
 
-    - *Resource Group:* Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing    resource group, select that resource group.
+    - **Resource Group:** Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing resource group, select that resource group.
 
-    - *Region:* Select the region in which you want your hub to be located. Select the location closest to you. Some features, such as IoT Hub device streams, are only available in specific regions. For these limited features, you must select one of the supported regions.
+    - **Region:** Select the region in which you want your hub to be located. Select the location closest to you. Some features, such as IoT Hub device streams, are only available in specific regions. For these limited features, you must select one of the supported regions.
 
-    - *IoT Hub Name:* Enter a name for your hub. This name must be globally unique, with a length between 3 and 50 alphanumeric characters. The name can also include the dash ('-') character.
+    - **IoT Hub Name:** Enter a name for your hub. This name must be globally unique, with a length between 3 and 50 alphanumeric characters. The name can also include the dash ('-') character.
 
 ![iot-hub-create-screen-basics](blog-images/iot-hub-create-screen-basics.png)
 
-5. Select *Next: Review + create* to review your choices. You see something similar to this screen, but with the values you selected when creating the hub.
+5. Select **Next: Review + create** to review your choices. You see something similar to this screen, but with the values you selected when creating the hub.
 
 ![iot-hub-review-and-create](blog-images/iot-hub-review-and-create.png)
 
@@ -81,17 +81,17 @@ https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal
 
 3. Complete the fields as follows:
     
-    - *Job Name:* Enter a name for your job.
+    - **Job Name:** Enter a name for your job.
 
-    - *Subscription:* Select the subscription to use for your hub.
+    - **Subscription:** Select the subscription to use for your job.
 
-    - *Resource Group:* Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing    resource group, select that resource group.
+    - **Resource Group:** Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing resource group, select that resource group.
 
-    - *Region:* Select the region in which you want your hub to be located. Select the location closest to you. Some features, such as IoT Hub device streams, are only available in specific regions. For these limited features, you must select one of the supported regions.
+    - **Region:** Select the region in which you want your job to be located. Select the location closest to you.
 
-    - *Streaming units:* Set the number of Streaming units to 1.
+    - **Streaming units:** Set the number of Streaming units to 1.
 
-4. *Create* your Stream Analytics Job.
+4. **Create** your Stream Analytics Job.
 
 ### Create SignalR
 
@@ -101,19 +101,19 @@ https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal
 
 3. Complete the fields as follows:
     
-    - *Subscription:* Select the subscription to use for your hub.
+    - **Subscription:** Select the subscription to use for your SignalR.
 
-    - *Resource Group:* Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing    resource group, select that resource group.
+    - **Resource Group:** Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing    resource group, select that resource group.
 
-    - *Resource Name:* Enter a name for your resource.
+    - **Resource Name:** Enter a name for your resource.
 
-    - *Region:* Select the region in which you want your hub to be located. Select the location closest to you. Some features, such as IoT Hub device streams, are only available in specific regions. For these limited features, you must select one of the supported regions.
+    - **Region:** Select the region in which you want your hub to be located. Select the location closest to you.
 
-    - *Pricing:* Select Free.
+    - **Pricing:** Select Free.
 
-    - *Service Mode:* Serverless.
+    - **Service Mode:** Serverless.
 
-4. Select *Next: Review + create* to review your choices.
+4. Select **Next: Review + create** to review your choices.
 
 ### Create a Blob storage
 
@@ -123,17 +123,17 @@ https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal
 
 3. Complete the fields as follows:
 
-    - *Subscription:* Select the subscription to use for your hub.
+    - **Subscription:** Select the subscription to use for your storage.
 
-    - *Resource Group:* Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing    resource group, select that resource group.
+    - **Resource Group:** Select a resource group or create a new one. To create a new one, select Create new and fill in the name you want to use. To use an existing resource group, select that resource group.
 
-    - *Storage account Name:* Enter a name for your resource.
+    - **Storage account Name:** Enter a name for your resource.
 
-    - *Region:* Select the region in which you want your hub to be located. Select the location closest to you. Some features, such as IoT Hub device streams, are only available in specific regions. For these limited features, you must select one of the supported regions.
+    - **Region:** Select the region in which you want your hub to be located. Select the location closest to you.
 
-    - *Performance* Select Standard.
+    - **Performance** Select Standard.
 
-4. Select *Next: Review + create* to review your choices.
+4. Select **Next: Review + create** to review your choices.
 
 ### Get Bing Map Key
 
@@ -145,17 +145,20 @@ https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal
 
 For the SignalR link to work we need a negotiate function.
 
-1. Create a HTTP Trigger called *negotiate*
+1. Create a HTTP Trigger called **negotiate**
 
 2. Replace the content of index.js with the following:
 
-`module.exports = async function (context, req, connectionInfo) {
+```
+module.exports = async function (context, req, connectionInfo) {
     context.res.body = connectionInfo;
-};`
+};
+```
 
 3. Replace the content of index.json with the following:
 
-`{
+```
+{
   "bindings": [
     {
       "authLevel": "function",
@@ -180,9 +183,10 @@ For the SignalR link to work we need a negotiate function.
       "direction": "out"
     }
   ]
-}`
+}
+```
 
-4. *Deploy* your function on Azure and add the 'AzureSignalRConnectionString' as a secret.
+4. **Deploy** your function on Azure and add the 'AzureSignalRConnectionString' as a secret.
 
 ### Writing Function
 
@@ -192,26 +196,30 @@ This function will recieve data from Stream Analytics Job and
 
 2. The code that recieves the data and passes them into SingnalR shoould look something like this:
 
-`var data = req.body[0];
+```
+var data = req.body[0];
 context.log(req.body[0]);
 
 context.bindings.signalRMessages = [{
     "target": "newMessage",
     "arguments": [data]
 }]
-context.done();`
+context.done();
+```
 
 3. In the function.json folder the following binding has to be added:
 
-`{
-      "type": "signalR",
-      "name": "signalRMessages",
-      "hubName": "serverless",
-      "connectionStringSetting": "AzureSignalRConnectionString",
-      "direction": "out"
-    }`
+```
+{
+  "type": "signalR",
+  "name": "signalRMessages",
+  "hubName": "serverless",
+  "connectionStringSetting": "AzureSignalRConnectionString",
+  "direction": "out"
+}
+```
 
-4. *Deploy* your function.
+4. **Deploy** your function.
 
 ### Front End
     
@@ -223,7 +231,8 @@ context.done();`
 
 3. Place the following code in the index.js folder that loads the html file:
 
-`var fs = require('fs').promises
+```
+var fs = require('fs').promises
 
 module.exports = async function (context, req) {
     //const path = context.executionContext.functionDirectory + '/../index.html'
@@ -240,29 +249,33 @@ module.exports = async function (context, req) {
         context.log.error(error);
         context.done(error);
     }
-}`
+}
+```
 
 4. In the html file place in a script that will access the SignalR data:
 
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script>
-    let messages = document.querySelector('#messages');
-    const apiBaseUrl = window.location.origin;
-    const connection = new signalR.HubConnectionBuilder()
-      .withUrl(apiBaseUrl + '/api')
-      .configureLogging(signalR.LogLevel.Information)
-      .build();
-    connection.on('newMessage', (message) => {
-      // code to diplay data goes here
-    });
+  let messages = document.querySelector('#messages');
+  const apiBaseUrl = window.location.origin;
+  const connection = new signalR.HubConnectionBuilder()
+    .withUrl(apiBaseUrl + '/api')
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+  connection.on('newMessage', (message) => {
+    // code to diplay data goes here
+  });
 
-    connection.start()
-      .catch(console.error);
-  </script>`
+  connection.start()
+    .catch(console.error);
+</script>
+```
 
 5. In the html file place in a script that will create a map:
 
-`<script type='text/javascript'>
+```
+<script type='text/javascript'>
     var map;
     var pushpin;
     function loadMapScenario() {
@@ -278,10 +291,11 @@ module.exports = async function (context, req) {
       map.setView({ center: new Microsoft.Maps.Location(long, lat) });
       pushpin.setLocation(new Microsoft.Maps.Location(long, lat));
     }
-  </script>
+</script>
   <script type='text/javascript'
     src='https://www.bing.com/api/maps/mapcontrol?key=YourAPIKey&callback=loadMapScenario'
-    async defer></script>`
+    async defer></script>
+```
 
 ### Connecting Stream Analytics to IoT Hub and Azure Function
 
@@ -293,11 +307,11 @@ module.exports = async function (context, req) {
 
 3. Fill out the IoT Hub page with the following values:
 
-    - *Input alias:* Enter a name to identify the job’s input.
+    - **Input alias:** Enter a name to identify the job’s input.
 
-    - *Subscription:* Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription.This example assumes that you have created storage account in the same subscription.
+    - **Subscription:** Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription.This example assumes that you have created storage account in the same subscription.
 
-    - *IoT Hub:* Enter the name of the IoT Hub you created in the previous section.
+    - **IoT Hub:** Enter the name of the IoT Hub you created in the previous section.
 
 4. Save your input
 
@@ -311,13 +325,13 @@ module.exports = async function (context, req) {
 
 3. Fill out the Blob storage page with the following values:
 
-    - *Output alias:* Enter a name to identify the job’s output.
+    - **Output alias:** Enter a name to identify the job’s output.
 
-    - *Subscription:* Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription. This example assumes that you have created storage account in the same subscription.
+    - **Subscription:** Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription. This example assumes that you have created storage account in the same subscription.
 
-    - *Storage account:* Choose or enter the name of the storage account. Storage account names are automatically detected if they are created in the same subscription.
+    - **Storage account:** Choose or enter the name of the storage account. Storage account names are automatically detected if they are created in the same subscription.
 
-    - *Container:* Select the existing container that you created in your storage account.
+    - **Container:** Select the existing container that you created in your storage account.
 
 4. Save your output
 
@@ -329,15 +343,15 @@ module.exports = async function (context, req) {
 
 3. Fill out the Azure Function page with the following values:
 
-    - *Output alias:* Enter a name to identify the job’s output.
+    - **Output alias:** Enter a name to identify the job’s output.
 
-    - *Subscription:* Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription. This example assumes that you have created storage account in the same subscription.
+    - **Subscription:** Select the Azure subscription that has the storage account you created. The storage account can be in the same or in a different subscription. This example assumes that you have created storage account in the same subscription.
 
-    - *Function App:* Choose or enter the name of the function app.
+    - **Function App:** Choose or enter the name of the function app.
 
-    - *Function:* Select the function you want as your output
+    - **Function:** Select the function you want as your output
     
-    - *Key name:* Default.
+    - **Key name:** Default.
 
 4. Save your output
 
@@ -347,16 +361,18 @@ module.exports = async function (context, req) {
 
 2. Select Query and change the SQL statement to include your input and outputs:
 
-`SELECT
+```
+SELECT
     *
 INTO
     BlobStorageOut
     FunctionOut
 FROM
-    IoTHubIn`
+    IoTHubIn
+```
 
 
-*Start* your Analytics Job.
+**Start** your Analytics Job.
 
 ## Challenges + lessons learned
 
