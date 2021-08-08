@@ -55,15 +55,15 @@ Dwnload Node.js
 
 In this section, you create a device identity in the identity registry in your IoT hub. A device cannot connect to a hub unless it has an entry in the identity registry.
 
-    1. In your IoT hub navigation menu, open IoT Devices, then select New to add a device in your IoT hub.
+1. In your IoT hub navigation menu, open IoT Devices, then select New to add a device in your IoT hub.
     
 ![create-identity-portal-vs2019](blog-images/create-identity-portal-vs2019.png)
 
-    2. In Create a device, provide a name for your new device, such as myDeviceId, and select Save. This action creates a device identity for your IoT hub. Leave Auto-generate keys checked so that the primary and secondary keys will be generated automatically.
+2. In Create a device, provide a name for your new device, such as myDeviceId, and select Save. This action creates a device identity for your IoT hub. Leave Auto-generate keys checked so that the primary and secondary keys will be generated automatically.
 
 ![create-a-device-vs2019](blog-images/create-a-device-vs2019.png)
 
-    3. After the device is created, open the device from the list in the IoT devices pane. Copy the Primary Connection String. This connection string is used by device code to communicate with the hub.
+3. After the device is created, open the device from the list in the IoT devices pane. Copy the Primary Connection String. This connection string is used by device code to communicate with the hub.
 
 By default, the keys and connection strings are masked as they are sensitive information. If you click the eye icon, they are revealed as shown in the image below. It is not necessary to reveal them to copy them with the copy button
 
@@ -149,13 +149,16 @@ For the SignalR link to work we need a negotiate function.
 
 2. Replace the content of index.js with the following:
 
-`module.exports = async function (context, req, connectionInfo) {
+```
+module.exports = async function (context, req, connectionInfo) {
     context.res.body = connectionInfo;
-};`
+};
+```
 
 3. Replace the content of index.json with the following:
 
-`{
+```
+{
   "bindings": [
     {
       "authLevel": "function",
@@ -180,7 +183,8 @@ For the SignalR link to work we need a negotiate function.
       "direction": "out"
     }
   ]
-}`
+}
+```
 
 4. *Deploy* your function on Azure and add the 'AzureSignalRConnectionString' as a secret.
 
@@ -192,24 +196,28 @@ This function will recieve data from Stream Analytics Job and
 
 2. The code that recieves the data and passes them into SingnalR shoould look something like this:
 
-`var data = req.body[0];
+```
+var data = req.body[0];
 context.log(req.body[0]);
 
 context.bindings.signalRMessages = [{
     "target": "newMessage",
     "arguments": [data]
 }]
-context.done();`
+context.done();
+```
 
 3. In the function.json folder the following binding has to be added:
 
-`{
+```
+{
       "type": "signalR",
       "name": "signalRMessages",
       "hubName": "serverless",
       "connectionStringSetting": "AzureSignalRConnectionString",
       "direction": "out"
-    }`
+    }
+```
 
 4. *Deploy* your function.
 
@@ -223,7 +231,8 @@ context.done();`
 
 3. Place the following code in the index.js folder that loads the html file:
 
-`var fs = require('fs').promises
+```
+var fs = require('fs').promises
 
 module.exports = async function (context, req) {
     //const path = context.executionContext.functionDirectory + '/../index.html'
@@ -240,11 +249,13 @@ module.exports = async function (context, req) {
         context.log.error(error);
         context.done(error);
     }
-}`
+}
+```
 
 4. In the html file place in a script that will access the SignalR data:
 
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script>
     let messages = document.querySelector('#messages');
     const apiBaseUrl = window.location.origin;
@@ -258,11 +269,13 @@ module.exports = async function (context, req) {
 
     connection.start()
       .catch(console.error);
-  </script>`
+  </script>
+```
 
 5. In the html file place in a script that will create a map:
 
-`<script type='text/javascript'>
+```
+<script type='text/javascript'>
     var map;
     var pushpin;
     function loadMapScenario() {
@@ -281,7 +294,8 @@ module.exports = async function (context, req) {
   </script>
   <script type='text/javascript'
     src='https://www.bing.com/api/maps/mapcontrol?key=YourAPIKey&callback=loadMapScenario'
-    async defer></script>`
+    async defer></script>
+```
 
 ### Connecting Stream Analytics to IoT Hub and Azure Function
 
@@ -347,13 +361,15 @@ module.exports = async function (context, req) {
 
 2. Select Query and change the SQL statement to include your input and outputs:
 
-`SELECT
+```
+SELECT
     *
 INTO
     BlobStorageOut
     FunctionOut
 FROM
-    IoTHubIn`
+    IoTHubIn
+```
 
 
 *Start* your Analytics Job.
