@@ -1,5 +1,11 @@
 <html>
 <meta name="viewport" content="width=device-width height=device-height, initial-scale=1">
+<head>
+  <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
+</head>
+
 <style type="text/css">
   body {
     margin: 0;
@@ -66,10 +72,10 @@
   table {
     display: block;
     border-collapse: collapse;
-    border-spacing: 0;
+    /* border-spacing: 1px; */
     width: auto;
-    /* max-width: 100%; */
-    max-height: 90vh;
+    width: 100%;
+    max-height: 85vh;
   }
 thead {
   position: sticky;
@@ -87,6 +93,7 @@ thead {
   td {
     text-align: left;
     padding: 4px;
+    padding-right: 10px;
   }
 </style>
 
@@ -125,7 +132,9 @@ thead {
       .configureLogging(signalR.LogLevel.Information)
       .build();
     connection.on('newMessage', (message) => {
-      document.getElementById("messages").innerHTML = message.deviceId;
+      document.getElementById("team").innerHTML = message.teamId;
+      document.getElementById("device").innerHTML = message.deviceId;
+      document.getElementById("race").innerHTML = message.raceId;
       // const li = document.createElement("li");
       // li.innerHTML = message.messageId;
       // document.getElementById("messages").appendChild(li);
@@ -147,18 +156,31 @@ thead {
       const battery = document.createElement("td");
       const speed = document.createElement("td");
       messageId.innerHTML = message.messageId;
+      messageId.setAttribute('style', 'column-width: 27px');
       time.innerHTML = message.EventEnqueuedUtcTime;
+      time.setAttribute('style', 'column-width: 220px');
       accx.innerHTML = message.accelerometer.X;
+      accx.setAttribute('style', 'column-width: 30px');
       accy.innerHTML = message.accelerometer.Y;
+      accy.setAttribute('style', 'column-width: 30px');
       accz.innerHTML = message.accelerometer.Z;
+      accz.setAttribute('style', 'column-width: 30px');
       gyrox.innerHTML = message.gyroscope.X;
+      gyrox.setAttribute('style', 'column-width: 18px');
       gyroy.innerHTML = message.gyroscope.Y;
+      gyroy.setAttribute('style', 'column-width: 18px');
       gyroz.innerHTML = message.gyroscope.Z;
+      gyroz.setAttribute('style', 'column-width: 18px');
       lat.innerHTML = message.location.lat;
+      lat.setAttribute('style', 'column-width: 80px');
       long.innerHTML = message.location.long;
+      long.setAttribute('style', 'column-width: 80px');
       throttle.innerHTML = message.throttle;
+      throttle.setAttribute('style', 'column-width: 71px');
       battery.innerHTML = message.battery;
+      battery.setAttribute('style', 'column-width: 71px');
       speed.innerHTML = message.speed;
+      speed.setAttribute('style', 'column-width: 45px');
       document.getElementById("tbody").appendChild(tr);
       document.getElementById("tbody").appendChild(messageId);
       document.getElementById("tbody").appendChild(time);
@@ -187,53 +209,67 @@ thead {
     connection.start()
       .catch(console.error);
   </script>
-
+  
   <div class="grid-container">
     <div class="item1">
       <div style="display: flex; flex-direction: row; justify-content: space-between;">
-        <div style="font-size: 4vh;">Sigma Link</div>
+        <div style="font-size: 4vh; font-family: 'STIX Two Text'">Sigma Link</div>
         <div style="font-size: 4vh; padding-right: 100px;">DEMO VERSION</div>
       </div>
     </div>
-    <div class="item2">
-      Menu
-      <div id="messages"></div>
+    <div class="item2" style="font-size: 25px; font-family: consolas;">
+      Information
+      <div style="display: flex; flex-direction: row;">
+        Team: 
+        <div id="team"></div>
+      </div>
+      <div style="display: flex; flex-direction: row;">
+        Device: 
+        <div id="device"></div>
+      </div>
+      <div style="display: flex; flex-direction: row;">
+        Race ID: 
+        <div id="race"></div>
+      </div>
+      
     </div>
     <div class="item4">
       <div id='myMap'></div>
     </div>
-    <div class="item5">
+    <div class="item5" style="background-color: aliceblue;">
 
-      <div id="contain" style="overflow-y:auto;">
+      <div style="font-family: consolas;">
         <table id="table">
           <thead>
             <tr>
-              <th colspan="1">No.</th>
-              <th colspan="1">Time</th>
+              <th colspan="1" style="column-width: 27px;">No.</th>
+              <th colspan="1" style="column-width: 220px;">Time</th>
               <th colspan="3">Accelerometer</th>
               <th colspan="3">Gyroscope</th>
               <th colspan="2">Location</th>
-              <th colspan="1">Throttle</th>
-              <th colspan="1">Battery</th>
-              <th colspan="1">Speed</th>
+              <th colspan="1" style="column-width: 71px;">Throttle</th>
+              <th colspan="1" style="column-width: 62px;">Battery</th>
+              <th colspan="1" style="column-width: 45px;">Speed</th>
             </tr>
             <tr>
               <th></th>
               <th></th>
-              <th>X</th>
-              <th>Y</th>
-              <th>Z</th>
-              <th>X</th>
-              <th>Y</th>
-              <th>Z</th>
-              <th>Lat</th>
-              <th>Long</th>
+              <th style="column-width: 30px;">X</th>
+              <th style="column-width: 30px;">Y</th>
+              <th style="column-width: 30px;">Z</th>
+              <th style="column-width: 18px;">X</th>
+              <th style="column-width: 18px;">Y</th>
+              <th style="column-width: 18px;">Z</th>
+              <th style="column-width: 80px;">Lat</th>
+              <th style="column-width: 80px;">Long</th>
               <th></th>
               <th></th>
               <th></th>
             </tr>
 
           </thead>
+        </table>
+        <table id="contain" style="overflow-y:auto;">
           <tbody id="tbody">
 
             <tr>
@@ -246,8 +282,7 @@ thead {
         </table>
       </div>
       
-    </div>
-  </div>
+ 
   
 
   <script type='text/javascript'>
